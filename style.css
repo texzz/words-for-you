@@ -1,0 +1,461 @@
+/* ====================== FONTS ====================== */
+@font-face {
+  font-family: "Kugile";
+  src: url("../fonts/Kugile_Demo.ttf") format("truetype");
+}
+@font-face {
+  font-family: "RusticRoadway";
+  src: url("../fonts/RusticRoadway.otf") format("opentype");
+}
+@font-face {
+  font-family: "Brillant";
+  src: url("../fonts/brillant.otf") format("opentype");
+}
+
+/* ===================== RESET ======================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+}
+body {
+  background: #0b0806;
+  color: #f4ead7;
+  font-family: "RusticRoadway", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-font-smoothing: antialiased;
+}
+.app-root {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  max-width: 900px;
+  overflow: hidden;
+}
+
+/* ================= FLOATING MUSIC BUTTON ============= */
+.floating-player {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 6px;
+  border-radius: 999px;
+  background: rgba(18, 12, 8, 0.92);
+  border: 1px solid rgba(255, 240, 210, 0.15);
+  backdrop-filter: blur(10px);
+  color: #f4ead7;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+}
+
+.floating-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  opacity: 0.9;
+}
+
+.floating-disk {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, #fbe9b8, #a56b2a 45%, #1a1108 46%, #1a1108 70%, #000 72%),
+    repeating-radial-gradient(circle, rgba(255, 255, 255, 0.1) 0, transparent 3px, transparent 6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 2px #57341a, 0 8px 16px rgba(0, 0, 0, 0.7);
+}
+.disk-center {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #f7e4c4;
+  box-shadow: 0 0 0 2px #1a1108;
+}
+
+/* Disk spinning when playing */
+.floating-player.playing .floating-disk {
+  animation: spin-d 5s linear infinite;
+}
+@keyframes spin-d {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}
+
+/* ================== PLAYER POPUP ==================== */
+.player-popup {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  width: min(320px, 90vw);
+  max-height: 80vh;
+  z-index: 60;
+  transform-origin: top left;
+  transform: scale(0.8) translateY(-20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.player-popup.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1) translateY(0);
+}
+.player-popup-inner {
+  background: radial-gradient(circle at top, #332016, #130d0a);
+  border-radius: 16px;
+  border: 1px solid rgba(248,223,183,0.18);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.85);
+  padding: 12px 14px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+/* apply Brillant font to player only */
+.player-font * {
+  font-family: "Brillant", sans-serif !important;
+}
+
+.player-header {display:flex; justify-content:space-between; align-items:center;}
+.player-header-left {display:flex; align-items:center; gap:8px;}
+.player-mini-disk {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fbe9b8, #a56b2a 45%, #1a1108 46%, #1a1108 70%, #000 72%);
+  box-shadow: 0 0 0 1px #57341a;
+}
+.player-title {font-size:1.1rem;}
+.player-subtitle {font-size:0.7rem; color:#d9c29a;}
+.player-close {
+  width:26px;height:26px;border-radius:99px;
+  border:1px solid rgba(244,228,194,0.4);
+  background: rgba(15,10,7,0.9);
+  color:#f8e4c1; cursor:pointer;
+}
+
+/* Current track info */
+.player-current {
+  padding:8px 10px;
+  border-radius:10px;
+  background: rgba(245,226,187,0.12);
+}
+.player-track-title {font-size:0.9rem;font-weight:600;}
+.player-track-artist {font-size:0.75rem;color:#ddc59b;}
+
+/* Controls */
+.player-controls {
+  display:flex; justify-content:center; align-items:center;
+  gap:12px;
+}
+.round-btn {
+  width:34px;height:34px;border-radius:999px;border:none;
+  background: radial-gradient(circle at top, #f4e0b7, #b47b38);
+  color:#23140a;cursor:pointer;font-size:0.9rem;
+  box-shadow:0 8px 14px rgba(0,0,0,0.6);
+}
+.main-play {width:44px;height:44px;}
+.round-btn:active {transform:translateY(1px);}
+
+/* Volume */
+.player-extra {
+  display:flex; align-items:center; gap:8px;
+}
+.extra-label {
+  font-size:0.7rem; color:#f0debc;
+  letter-spacing:0.12em; text-transform:uppercase;
+}
+#volumeRange {
+  flex:1;appearance:none;height:3px;
+  border-radius:999px;background:#4f3119;
+}
+#volumeRange::-webkit-slider-thumb {
+  appearance:none;width:12px;height:12px;border-radius:50%;
+  background:#f7dfb0;box-shadow:0 0 0 2px #3b2412;
+}
+
+/* Playlist */
+.playlist-wrap {
+  max-height:40vh;
+  overflow-y:auto;
+  padding-top:4px;
+  border-top:1px solid rgba(245,226,187,0.2);
+}
+.playlist-title {
+  font-size:0.75rem;text-transform:uppercase;
+  letter-spacing:0.14em;margin-bottom:4px;color:#e9d4aa;
+}
+.playlist {list-style:none;}
+.playlist-item {
+  padding:6px 8px;
+  border-radius:8px;
+  display:flex; justify-content:space-between;
+  cursor:pointer;
+  font-size:0.78rem;
+  transition:background 0.15s ease, transform .1s ease;
+}
+.playlist-item:hover {background:rgba(244,219,178,0.14);}
+.playlist-item.active {background:rgba(244,219,178,0.22);color:#ffecc2;}
+.playlist-item-title {font-weight:500;}
+.playlist-item-artist {font-size:0.7rem;color:#cfb796;}
+.playlist-item-duration {font-size:0.7rem;color:#d8c099;}
+
+/* ================== PAGES ==================== */
+.page-wrapper {width:100%;height:100%;position:relative;}
+.page {
+  position:absolute; inset:0;
+  background-image: var(--bg-image);
+  background-size: contain;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-color:#0b0806;
+  display:flex;justify-content:center;align-items:center;
+  padding:16px;
+  opacity:0; transform:translateX(30px);
+  pointer-events:none;
+  transition:opacity .6s, transform .6s;
+}
+.page.active {
+  opacity:1;transform:translateX(0);
+  pointer-events:auto;
+}
+.page-overlay {
+  position:absolute;inset:0;
+  background:rgba(0,0,0,0.4);
+}
+.page-content-box {
+  position:relative;z-index:2;
+  padding:18px 18px 22px;
+  border-radius:14px;
+  background:rgba(14,8,5,0.7);
+  border:1px solid rgba(246,226,194,0.28);
+  box-shadow:0 16px 30px rgba(0,0,0,0.75);
+  max-width:420px;width:100%;
+}
+
+/* Text animations */
+.intro-text {opacity:0;transform:translateY(14px);
+  transition:opacity .7s ease, transform .7s ease;}
+.page.active .intro-text {opacity:1;transform:translateY(0);}
+.line {margin-bottom:6px;color:#f6e4c7;}
+.kugile {font-family:"Kugile";font-size:1.5rem;}
+.rustic {font-family:"RusticRoadway";font-size:1.05rem;}
+
+/* Buttons */
+.intro-button {
+  margin-top:16px;width:100%;
+  border:none;border-radius:999px;padding:10px 14px;
+  font-size:0.9rem;letter-spacing:.16em;
+  text-transform:uppercase;font-family:"Kugile";
+  background: radial-gradient(circle at top,#f4e0b7,#b47b38);
+  color:#251309;cursor:pointer;
+  box-shadow:0 10px 20px rgba(0,0,0,0.7);
+  opacity:0;transform:translateY(10px);
+  pointer-events:none;transition:.35s;
+}
+.intro-button.show {opacity:1;transform:translateY(0);pointer-events:auto;}
+.intro-button:active {transform:translateY(1px);}
+
+/* ===================== POEM BOOK ====================== */
+.poem-book {
+  position: absolute;
+  inset: 0;
+  background: #0b0806;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.poem-page {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.5s ease;
+  transform-origin: center;
+}
+
+/* Flip animation */
+.poem-page.flip-next { transform: rotateY(-90deg); }
+.poem-page.flip-prev { transform: rotateY(90deg); }
+
+/* center-left/right circular arrows */
+.poem-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: #f6e4c7;
+  border: 1px solid #c6a476;
+  padding: 10px 14px;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 10;
+}
+.poem-nav.prev { left: 18px; }
+.poem-nav.next { right: 18px; }
+.poem-nav:hover { background: rgba(0,0,0,0.9); }
+
+/* ================== FINAL TEXT PAGE =================== */
+.page--no-image {
+  background-image: none;
+  background: radial-gradient(circle at top, #3a2517, #120b08);
+}
+
+.final-text-box {
+  position: relative;
+  z-index: 2;
+  max-width: 520px;
+  max-height: 80vh;
+  padding: 18px 20px 22px;
+  border-radius: 16px;
+  background: rgba(14, 8, 5, 0.85);
+  border: 1px solid rgba(246,226,194,0.35);
+  box-shadow: 0 16px 30px rgba(0,0,0,0.9);
+  overflow-y: auto;
+}
+.final-heading {
+  font-family: "Kugile";
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  color: #f6e4c7;
+}
+.final-body {
+  font-family: "RusticRoadway";
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #f3ddbd;
+}
+.final-body p {
+  margin-bottom: 12px;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:600px) {
+  .page-content-box {max-width:360px;}
+  .kugile {font-size:1.3rem;}
+  .rustic {font-size:0.95rem;}
+  .final-text-box {max-width:90%;max-height:78vh;}
+}
+.no-bg {
+  background-image: none !important;
+  background: radial-gradient(circle at top, #3c2519, #120a07);
+}
+
+/* ===== FINAL GUJARATI PAGE UPGRADE ===== */
+
+/* hide scrollbar */
+.final-text-box::-webkit-scrollbar {
+  width: 0;
+}
+.final-text-box {
+  scrollbar-width: none;
+  padding-right: 30px; /* so text doesn’t stick to border */
+  backdrop-filter: blur(3px);
+  animation: fadeBook 1s ease;
+}
+@keyframes fadeBook {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* elegant text hover */
+.final-body p:hover {
+  color: #ffe4b0;
+  transform: translateX(2px);
+  transition: color .35s ease, transform .35s ease;
+  text-shadow: 0 0 8px rgba(255, 224, 180, 0.45);
+}
+
+/* small golden border glow */
+.final-text-box:hover {
+  border-color: rgba(250, 225, 170, 0.55);
+  box-shadow: 0 0 12px rgba(255, 215, 160, 0.18), 0 18px 40px rgba(0,0,0,0.9);
+  transition: box-shadow .35s ease, border-color .35s ease;
+}
+
+/* Gujarati heading glow */
+.final-heading {
+  text-shadow: 0 0 12px rgba(255,240,210,0.45);
+  letter-spacing: 0.6px;
+}
+
+.playlist-wrap::-webkit-scrollbar {
+  width: 0 !important;
+}
+.playlist-wrap {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.player-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.7rem;
+  color: #ddc59b;
+}
+#seekBar {
+  flex: 1;
+  appearance: none;
+  height: 3px;
+  border-radius: 999px;
+  background: #4f3119;
+}
+#seekBar::-webkit-slider-thumb {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #f7dfb0;
+  appearance: none;
+}
+/* ====== POEM TITLE BOX STYLING ====== */
+.poem-title {
+  position: absolute;
+  top: 5.5%;  /* moved slightly up */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 22px;  /* box size */
+  background: rgba(20, 13, 10, 0.8);
+  border: 1px solid rgba(255, 227, 185, 0.35);
+  border-radius: 14px;
+  box-shadow: 0 0 14px rgba(0,0,0,0.6), inset 0 0 8px rgba(255,235,200,0.15);
+  font-family: "Kugile";
+  font-size: 1.42rem;
+  color: #f7e7c7;
+  text-shadow: 0 0 8px rgba(255,220,150,0.45);
+  letter-spacing: 0.45px;
+  pointer-events: none;
+  backdrop-filter: blur(5px);
+  z-index: 5;
+}
+
+/* Glowing slow animation effect */
+.poem-title {
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  0% { box-shadow: 0 0 12px rgba(255,220,180,0.15), inset 0 0 6px rgba(255,230,200,0.05); }
+  100% { box-shadow: 0 0 18px rgba(255,220,180,0.32), inset 0 0 10px rgba(255,230,200,0.20); }
+}
+
+/* Smaller screens */
+@media (max-width:600px) {
+  .poem-title {
+    font-size: 1.22rem;
+    padding: 5px 16px;
+    top: 4.5%; /* slightly higher on phones */
+  }
+}
+
