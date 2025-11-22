@@ -90,10 +90,7 @@ body {
 .floating-player.playing .floating-disk {
   animation: spin-d 5s linear infinite;
 }
-@keyframes spin-d {
-  0% { transform: rotate(0deg);}
-  100% { transform: rotate(360deg);}
-}
+@keyframes spin-d {0% { transform: rotate(0deg);}100% { transform: rotate(360deg);}}
 
 /* ================== PLAYER POPUP ==================== */
 .player-popup {
@@ -309,6 +306,36 @@ body {
 .poem-nav.next { right: 18px; }
 .poem-nav:hover { background: rgba(0,0,0,0.9); }
 
+/* ====== POEM TITLE BOX ====== */
+.poem-title {
+  position: absolute;
+  top: 5.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 22px;
+  background: rgba(20, 13, 10, 0.8);
+  border: 1px solid rgba(255, 227, 185, 0.35);
+  border-radius: 14px;
+  box-shadow: 0 0 14px rgba(0,0,0,0.6), inset 0 0 8px rgba(255,235,200,0.15);
+  font-family: "Kugile";
+  font-size: 1.42rem;
+  color: #f7e7c7;
+  text-shadow: 0 0 8px rgba(255,220,150,0.45);
+  letter-spacing: 0.45px;
+  pointer-events: none;
+  backdrop-filter: blur(5px);
+  z-index: 5;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  0% { box-shadow: 0 0 12px rgba(255,220,180,0.15), inset 0 0 6px rgba(255,230,200,0.05); }
+  100% { box-shadow: 0 0 18px rgba(255,220,180,0.32), inset 0 0 10px rgba(255,230,200,0.20); }
+}
+@media (max-width:600px) {
+  .poem-title { font-size: 1.22rem; padding: 5px 16px; top: 4.5%; }
+}
+
 /* ================== FINAL TEXT PAGE =================== */
 .page--no-image {
   background-image: none;
@@ -326,12 +353,17 @@ body {
   border: 1px solid rgba(246,226,194,0.35);
   box-shadow: 0 16px 30px rgba(0,0,0,0.9);
   overflow-y: auto;
+  scrollbar-width: none;
 }
+.final-text-box::-webkit-scrollbar { width: 0; }
+
 .final-heading {
   font-family: "Kugile";
   font-size: 1.4rem;
   margin-bottom: 12px;
   color: #f6e4c7;
+  text-shadow: 0 0 12px rgba(255,240,210,0.45);
+  letter-spacing: 0.6px;
 }
 .final-body {
   font-family: "RusticRoadway";
@@ -339,123 +371,11 @@ body {
   line-height: 1.6;
   color: #f3ddbd;
 }
-.final-body p {
-  margin-bottom: 12px;
-}
+.final-body p { margin-bottom: 12px; }
 
-/* ============ RESPONSIVE ============ */
-@media (max-width:600px) {
-  .page-content-box {max-width:360px;}
-  .kugile {font-size:1.3rem;}
-  .rustic {font-size:0.95rem;}
-  .final-text-box {max-width:90%;max-height:78vh;}
-}
-.no-bg {
-  background-image: none !important;
-  background: radial-gradient(circle at top, #3c2519, #120a07);
-}
-
-/* ===== FINAL GUJARATI PAGE UPGRADE ===== */
-
-/* hide scrollbar */
-.final-text-box::-webkit-scrollbar {
-  width: 0;
-}
-.final-text-box {
-  scrollbar-width: none;
-  padding-right: 30px; /* so text doesn’t stick to border */
-  backdrop-filter: blur(3px);
-  animation: fadeBook 1s ease;
-}
-@keyframes fadeBook {
-  0% { opacity: 0; transform: translateY(10px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-/* elegant text hover */
 .final-body p:hover {
   color: #ffe4b0;
   transform: translateX(2px);
   transition: color .35s ease, transform .35s ease;
   text-shadow: 0 0 8px rgba(255, 224, 180, 0.45);
 }
-
-/* small golden border glow */
-.final-text-box:hover {
-  border-color: rgba(250, 225, 170, 0.55);
-  box-shadow: 0 0 12px rgba(255, 215, 160, 0.18), 0 18px 40px rgba(0,0,0,0.9);
-  transition: box-shadow .35s ease, border-color .35s ease;
-}
-
-/* Gujarati heading glow */
-.final-heading {
-  text-shadow: 0 0 12px rgba(255,240,210,0.45);
-  letter-spacing: 0.6px;
-}
-
-.playlist-wrap::-webkit-scrollbar {
-  width: 0 !important;
-}
-.playlist-wrap {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.player-progress {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.7rem;
-  color: #ddc59b;
-}
-#seekBar {
-  flex: 1;
-  appearance: none;
-  height: 3px;
-  border-radius: 999px;
-  background: #4f3119;
-}
-#seekBar::-webkit-slider-thumb {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: #f7dfb0;
-  appearance: none;
-}
-/* ====== POEM TITLE BOX STYLING ====== */
-.poem-title {
-  position: absolute;
-  top: 5.5%;  /* moved slightly up */
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 6px 22px;  /* box size */
-  background: rgba(20, 13, 10, 0.8);
-  border: 1px solid rgba(255, 227, 185, 0.35);
-  border-radius: 14px;
-  box-shadow: 0 0 14px rgba(0,0,0,0.6), inset 0 0 8px rgba(255,235,200,0.15);
-  font-family: "Kugile";
-  font-size: 1.42rem;
-  color: #f7e7c7;
-  text-shadow: 0 0 8px rgba(255,220,150,0.45);
-  letter-spacing: 0.45px;
-  pointer-events: none;
-  backdrop-filter: blur(5px);
-  z-index: 5;
-}
-
-/* Glowing slow animation effect */
-.poem-title {
-  animation: titleGlow 3s ease-in-out infinite alternate;
-}
-
-@keyframes titleGlow {
-  0% { box-shadow: 0 0 12px rgba(255,220,180,0.15), inset 0 0 6px rgba(255,230,200,0.05); }
-  100% { box-shadow: 0 0 18px rgba(255,220,180,0.32), inset 0 0 10px rgba(255,230,200,0.20); }
-}
-
-/* Smaller screens */
-@media (max-width:600px) {
-  .poem-title {
-    font-size: 1.22rem;
-    padding: 5px 16px;
-    top: 4.5%; /* slightly higher on phones */
-  }
-}
-
