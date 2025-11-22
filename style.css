@@ -1,15 +1,15 @@
 /* ====================== FONTS ====================== */
 @font-face {
   font-family: "Kugile";
-  src: url("../fonts/Kugile_Demo.ttf") format("truetype");
+  src: url("Kugile_Demo.ttf") format("truetype");
 }
 @font-face {
   font-family: "RusticRoadway";
-  src: url("../fonts/RusticRoadway.otf") format("opentype");
+  src: url("RusticRoadway.otf") format("opentype");
 }
 @font-face {
   font-family: "Brillant";
-  src: url("../fonts/brillant.otf") format("opentype");
+  src: url("brillant.otf") format("opentype");
 }
 
 /* ===================== RESET ======================= */
@@ -363,7 +363,7 @@ body {
 }
 .final-text-box {
   scrollbar-width: none;
-  padding-right: 30px; /* so text doesn’t stick to border */
+  padding-right: 30px; /* so text doesn't stick to border */
   backdrop-filter: blur(3px);
   animation: fadeBook 1s ease;
 }
@@ -458,4 +458,3 @@ body {
     top: 4.5%; /* slightly higher on phones */
   }
 }
-
