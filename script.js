@@ -34,37 +34,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ========== POEM FLIPBOOK LOGIC ========== */
   const poemImages = [
-    "assets/images/poem1.jpg",
-    "assets/images/poem2.jpg",
-    "assets/images/poem3.jpg",
-    "assets/images/poem4.jpg",
-    "assets/images/poem5.jpg",
-    "assets/images/poem6.jpg",
-    "assets/images/poem7.jpg",
-    "assets/images/poem8.jpg",
-    "assets/images/poem9.jpg",
-    "assets/images/poem10.jpg",
-    "assets/images/poem11.jpg",
-    "assets/images/poem12.jpg",
-    "assets/images/poem13.jpg",
-    "assets/images/poem14.jpg"
+    "images/poem1.jpg",
+    "images/poem2.jpg",
+    "images/poem3.jpg",
+    "images/poem4.jpg",
+    "images/poem5.jpg",
+    "images/poem6.jpg",
+    "images/poem7.jpg",
+    "images/poem8.jpg",
+    "images/poem9.jpg",
+    "images/poem10.jpg",
+    "images/poem11.jpg",
+    "images/poem12.jpg",
+    "images/poem13.jpg",
+    "images/poem14.jpg"
   ];
-const poemTitles = [
-  "Her Eyes",
-  "Her Smile",
-  "Her Voice",
-  "Her Kindness",
-  "Her Presence",
-  "Her Hair",
-  "Her Love",
-  "Her Beauty",
-  "Her Silent Care",
-  "Her Listening",
-  "Her Patience",
-  "Her Promises",
-  "Her Lips",
-  "Her Hug"
-];
+
+  const poemTitles = [
+    "Her Eyes",
+    "Her Smile",
+    "Her Voice",
+    "Her Kindness",
+    "Her Presence",
+    "Her Hair",
+    "Her Love",
+    "Her Beauty",
+    "Her Silent Care",
+    "Her Listening",
+    "Her Patience",
+    "Her Promises",
+    "Her Lips",
+    "Her Hug"
+  ];
 
   let poemIndex = 0;
   const poemPage = document.getElementById("poemPage");
@@ -73,10 +74,9 @@ const poemTitles = [
   const flipSound = document.getElementById("pageSound");
 
   function loadPoem() {
-  poemPage.style.backgroundImage = `url('${poemImages[poemIndex]}')`;
-  document.getElementById("poemTitle").textContent = poemTitles[poemIndex];
-}
-
+    poemPage.style.backgroundImage = `url('${poemImages[poemIndex]}')`;
+    document.getElementById("poemTitle").textContent = poemTitles[poemIndex];
+  }
 
   function playFlip() {
     if (!flipSound) return;
@@ -85,7 +85,6 @@ const poemTitles = [
   }
 
   nextBtn.addEventListener("click", () => {
-    // If not last poem → go to next
     if (poemIndex < poemImages.length - 1) {
       playFlip();
       poemPage.classList.add("flip-next");
@@ -95,10 +94,8 @@ const poemTitles = [
         poemPage.classList.remove("flip-next");
       }, 300);
     } else {
-      // last poem → go to final intro page
       poemBook.style.display = "none";
       pageFinalIntro.classList.add("active");
-      // show button after slight delay
       setTimeout(() => {
         btnShowGujarati.classList.add("show");
       }, 2000);
@@ -138,17 +135,16 @@ const poemTitles = [
   const currentTrackArtist = document.getElementById("currentTrackArtist");
 
   const playlist = [
-  { title: "Darkhaast", src: "assets/music/Darkhaast.mp3" },
-  { title: "First Love", src: "assets/music/First Love .mp3" },
-  { title: "Ishq Chadha Hai", src: "assets/music/Ishq Chadha Hai .mp3" },
-  { title: "I've Got My Eye On You", src: "assets/music/I've Got my eye on you..mp3" },
-  { title: "Jhol (Acoustic)", src: "assets/music/Maanu - Jhol (Acoustic) .mp3" },
-  { title: "Mast Magan", src: "assets/music/Mast Magan .mp3" },
-  { title: "Rabba Mehar Kari", src: "assets/music/Rabba Mehar Kari .mp3" },
-  { title: "Rishte Naate", src: "assets/music/Rishte Naate .mp3" },
-  { title: "Tu Hi Mera", src: "assets/music/Tu Hi Mera .mp3" },
-];
-
+    { title: "Darkhaast", src: "music/Darkhaast.mp3" },
+    { title: "First Love", src: "music/First Love .mp3" },
+    { title: "Ishq Chadha Hai", src: "music/Ishq Chadha Hai .mp3" },
+    { title: "I've Got My Eye On You", src: "music/I've Got my eye on you..mp3" },
+    { title: "Jhol (Acoustic)", src: "music/Maanu - Jhol (Acoustic) .mp3" },
+    { title: "Mast Magan", src: "music/Mast Magan .mp3" },
+    { title: "Rabba Mehar Kari", src: "music/Rabba Mehar Kari .mp3" },
+    { title: "Rishte Naate", src: "music/Rishte Naate .mp3" },
+    { title: "Tu Hi Mera", src: "music/Tu Hi Mera .mp3" },
+  ];
 
   let currentIndex = 0;
   let isPlaying = false;
@@ -272,4 +268,3 @@ const poemTitles = [
   }
   renderPlaylist();
 });
-
