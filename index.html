@@ -5,7 +5,7 @@
   <title>Vintage Poetry Book</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- 👇 CSS now in root (NOT in assets) -->
+  <!-- CSS is in root now (NOT in assets/) -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -37,18 +37,18 @@
           <div class="player-track-artist" id="currentTrackArtist">You</div>
         </div>
 
+        <!-- Song timer + seek bar -->
+        <div class="player-progress">
+          <span id="currentTime">0:00</span>
+          <input type="range" id="seekBar" value="0" min="0" max="100">
+          <span id="durationTime">0:00</span>
+        </div>
+
         <div class="player-controls">
           <button class="round-btn" id="prevTrackBtn">⟵</button>
           <button class="round-btn main-play" id="playPauseBtn">▶</button>
           <button class="round-btn" id="nextTrackBtn">⟶</button>
         </div>
-
-        <!-- 🎵 SONG TIMER + SEEKBAR ADDED ✔️ -->
-        <!-- <div class="player-progress">
-          <span id="currentTime">0:00</span>
-          <input type="range" id="seekBar" value="0" min="0" max="100">
-          <span id="durationTime">0:00</span>
-        </div> -->
 
         <div class="player-extra">
           <span class="extra-label">volume</span>
@@ -70,7 +70,7 @@
       <section
         class="intro-page page active"
         id="page1"
-        style="--bg-image: url('../images/cover.jpg');">
+        style="--bg-image: url('images/cover.jpg');">
         <div class="page-overlay"></div>
         <div class="page-content-box">
           <div class="intro-text">
@@ -85,7 +85,7 @@
       <section
         class="intro-page page"
         id="page2"
-        style="--bg-image: url('../images/paper2.jpg');">
+        style="--bg-image: url('images/paper2.jpg');">
         <div class="page-overlay page-overlay-light"></div>
         <div class="page-content-box">
           <div class="intro-text">
@@ -102,9 +102,8 @@
 
       <!-- POEM FLIPBOOK (14 image pages) -->
       <section class="poem-book" id="poemBook">
-            <div class="poem-title" id="poemTitle"></div>
-            <div class="poem-page" id="poemPage"></div>
-
+        <div class="poem-title" id="poemTitle"></div>
+        <div class="poem-page" id="poemPage"></div>
 
         <!-- centered arrows -->
         <button class="poem-nav prev" id="prevPoem">&#8592;</button>
@@ -181,11 +180,11 @@
     <!-- Hidden audio element for music player -->
     <audio id="audioElement"></audio>
 
-    <!-- Page flip sound -->
-    <audio id="pageSound" src="assets/sound/page.mp3"></audio>
+    <!-- Page flip sound (sound folder at root) -->
+    <audio id="pageSound" src="sound/page.mp3"></audio>
   </div>
 
-  <script src="assets/js/script.js"></script>
+  <!-- JS is also in root now -->
+  <script src="script.js"></script>
 </body>
 </html>
-
