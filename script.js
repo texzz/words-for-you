@@ -34,37 +34,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ========== POEM FLIPBOOK LOGIC ========== */
   const poemImages = [
-    "assets/images/poem1.jpg",
-    "assets/images/poem2.jpg",
-    "assets/images/poem3.jpg",
-    "assets/images/poem4.jpg",
-    "assets/images/poem5.jpg",
-    "assets/images/poem6.jpg",
-    "assets/images/poem7.jpg",
-    "assets/images/poem8.jpg",
-    "assets/images/poem9.jpg",
-    "assets/images/poem10.jpg",
-    "assets/images/poem11.jpg",
-    "assets/images/poem12.jpg",
-    "assets/images/poem13.jpg",
-    "assets/images/poem14.jpg"
+    "poem1.jpg",
+    "poem2.jpg",
+    "poem3.jpg",
+    "poem4.jpg",
+    "poem5.jpg",
+    "poem6.jpg",
+    "poem7.jpg",
+    "poem8.jpg",
+    "poem9.jpg",
+    "poem10.jpg",
+    "poem11.jpg",
+    "poem12.jpg",
+    "poem13.jpg",
+    "poem14.jpg"
   ];
-const poemTitles = [
-  "Her Eyes",
-  "Her Smile",
-  "Her Voice",
-  "Her Kindness",
-  "Her Presence",
-  "Her Hair",
-  "Her Love",
-  "Her Beauty",
-  "Her Silent Care",
-  "Her Listening",
-  "Her Patience",
-  "Her Promises",
-  "Her Lips",
-  "Her Hug"
-];
+
+  const poemTitles = [
+    "Her Eyes",
+    "Her Smile",
+    "Her Voice",
+    "Her Kindness",
+    "Her Presence",
+    "Her Hair",
+    "Her Love",
+    "Her Beauty",
+    "Her Silent Care",
+    "Her Listening",
+    "Her Patience",
+    "Her Promises",
+    "Her Lips",
+    "Her Hug"
+  ];
 
   let poemIndex = 0;
   const poemPage = document.getElementById("poemPage");
@@ -73,10 +74,9 @@ const poemTitles = [
   const flipSound = document.getElementById("pageSound");
 
   function loadPoem() {
-  poemPage.style.backgroundImage = `url('${poemImages[poemIndex]}')`;
-  document.getElementById("poemTitle").textContent = poemTitles[poemIndex];
-}
-
+    poemPage.style.backgroundImage = `url('${poemImages[poemIndex]}')`;
+    document.getElementById("poemTitle").textContent = poemTitles[poemIndex];
+  }
 
   function playFlip() {
     if (!flipSound) return;
@@ -138,17 +138,16 @@ const poemTitles = [
   const currentTrackArtist = document.getElementById("currentTrackArtist");
 
   const playlist = [
-  { title: "Darkhaast", src: "assets/music/Darkhaast.mp3" },
-  { title: "First Love", src: "assets/music/First Love .mp3" },
-  { title: "Ishq Chadha Hai", src: "assets/music/Ishq Chadha Hai .mp3" },
-  { title: "I've Got My Eye On You", src: "assets/music/I've Got my eye on you..mp3" },
-  { title: "Jhol (Acoustic)", src: "assets/music/Maanu - Jhol (Acoustic) .mp3" },
-  { title: "Mast Magan", src: "assets/music/Mast Magan .mp3" },
-  { title: "Rabba Mehar Kari", src: "assets/music/Rabba Mehar Kari .mp3" },
-  { title: "Rishte Naate", src: "assets/music/Rishte Naate .mp3" },
-  { title: "Tu Hi Mera", src: "assets/music/Tu Hi Mera .mp3" },
-];
-
+    { title: "Darkhaast", src: "Darkhaast.mp3" },
+    { title: "First Love", src: "First Love .mp3" },
+    { title: "Ishq Chadha Hai", src: "Ishq Chadha Hai .mp3" },
+    { title: "I've Got My Eye On You", src: "I've Got my eye on you..mp3" },
+    { title: "Jhol (Acoustic)", src: "Maanu - Jhol (Acoustic) .mp3" },
+    { title: "Mast Magan", src: "Mast Magan .mp3" },
+    { title: "Rabba Mehar Kari", src: "Rabba Mehar Kari .mp3" },
+    { title: "Rishte Naate", src: "Rishte Naate .mp3" },
+    { title: "Tu Hi Mera", src: "Tu Hi Mera .mp3" },
+  ];
 
   let currentIndex = 0;
   let isPlaying = false;
@@ -272,4 +271,3 @@ const poemTitles = [
   }
   renderPlaylist();
 });
-
